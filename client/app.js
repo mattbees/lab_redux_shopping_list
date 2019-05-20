@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   discardForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     store.dispatch({ type: 'REMOVE_ITEM', value: discardInput.value })
-    input.value = '';
+    discardInput.value = '';
   });
 
   const render = () => {
