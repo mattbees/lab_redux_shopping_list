@@ -3,13 +3,13 @@ const { createStore } = require('redux');
 document.addEventListener('DOMContentLoaded', () => {
   console.log('JS loaded');
 
-  const listReducer = (state = [], item) => {
-    switch(item.type) {
+  const listReducer = (state = [], action) => {
+    switch(action.type) {
       case 'ADD_ITEM':
-        return [ ...state, item.value ];
+        return [ ...state, action.value ];
       case 'REMOVE_ITEM':
         const currentState = [ ...state ];
-        const filteredState = filterList(currentState, item.value);
+        const filteredState = filterList(currentState, action.value);
         return filteredState;
       default:
         return state;
@@ -17,10 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const filterList = (state, item) => {
-    const filteredState = state.filter(listItem => {
-      return listItem !== item;
-    });
-    return filteredState;
+    return state.filter(listItem => listItem !== item );
   }
 
   const store = createStore(listReducer);
